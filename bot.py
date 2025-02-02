@@ -5,6 +5,7 @@ from pyrogram.errors.exceptions.flood_420 import FloodWait
 from database import add_user, add_group, all_users, all_groups, users, remove_user
 from configs import cfg
 import random, asyncio
+from flask import Flask, jsonify, request
 
 app = Client(
     "approver",
@@ -16,6 +17,20 @@ app = Client(
 gif = [
     'https://media.tenor.com/Kjtc-YmBNn0AAAPo/mad-rem.mp4'
 ]
+
+# Initialize Flask app
+flask_app = Flask(__name__)
+
+# Web service example: Health check endpoint
+@flask_app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "ok", "message": "Koyeb Health Pass is working!"})
+
+@flask_app.route('/status', methods=['GET'])
+def status():
+    # Example of checking if the bot is running
+    return jsonify({"status": "Bot is running", "users": len(all_users()), "groups": len(all_groups())})
+
 
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Main process ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -175,6 +190,16 @@ async def fcast(_, m : Message):
             failed +=1
 
     await lel.edit(f"Sᴜᴄᴄᴇssғᴜʟ: `{success}`\nFᴀɪʟᴇᴅ: `{failed}`\nBʟᴏᴄᴋᴇᴅ: `{blocked}`\nDᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ: `{deactivated}`")
+
+if __name__ == '__main__':
+    from threading import Thread
+    # Start the Flask server in a separate thread to avoid blocking the Pyrogram client
+    def start_flask():
+        flask_app.run(host="0.0.0.0", port=8000)
+
+    # Start Flask server
+    thread = Thread(target=start_flask)
+    thread.start()
 
 print("Nᴀᴛsᴜᴋɪ Sᴜʙᴀʀᴜ ɪs ʙᴀᴄᴋ!!!")
 app.run()
