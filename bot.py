@@ -15,7 +15,13 @@ app = Client(
 )
 
 gif = [
-    'https://media.tenor.com/Kjtc-YmBNn0AAAPo/mad-rem.mp4'
+    'https://media.tenor.com/2IASsV3yHAQAAAPo/rem-rezero.mp4'
+    'https://media.tenor.com/K6WDm9L78mgAAAPo/rezero-rem.mp4'
+    'https://media.tenor.com/fKSubI-wAA4AAAPo/rem-re-zero.mp4'
+    'https://media.tenor.com/YBoreu_EK3AAAAPo/rem-re.mp4'
+    'https://media.tenor.com/-4VL0vAcK9MAAAPo/anime-anime-bride.mp4'
+    'https://media.tenor.com/wBuCcRT5EP0AAAPo/rem-smile.mp4'
+    'https://media.tenor.com/loCs6m6MxNUAAAPo/smile.mp4'
 ]
 
 # Initialize Flask app
